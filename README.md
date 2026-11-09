@@ -19,15 +19,29 @@ YER 2026 — 14th Student Graduation Design Projects Symposium and Exhibition, J
 
 ## Thesis results
 
+Intersection over Union (IoU) measures how much two masks overlap.
+
+### Facies classification on Netherlands F3
+
+The model achieved **0.67 mean IoU across the two test splits**. Lower North Sea reached **0.92 IoU on both splits**, and Upper North Sea reached **0.90 on test2**.
+
+| Metric or facies | Test1 (inline) | Test2 (crossline) |
+| --- | ---: | ---: |
+| Mean IoU across facies | **0.74** | **0.60** |
+| Lower North Sea IoU | 0.92 | 0.92 |
+| Upper North Sea IoU | 0.84 | 0.90 |
+| Boundary F1 | 0.57 | 0.49 |
+
+Middle North Sea scored approximately 0.75–0.78 IoU across the two splits. On test1, chalk reached 0.72, Scruff 0.66, and Zechstein 0.57. The thesis reports that confusion among the less common deep units accounts for much of the gap between the splits.
+
+### Fault detection
+
 | Evaluation | Reported result |
 | --- | --- |
-| Facies on Alaudah F3 test1 | 0.74 mean IoU |
-| Facies on Alaudah F3 test2 | 0.60 mean IoU |
-| Facies across both test splits | 0.67 mean IoU |
-| Fault detection on synthetic validation data at threshold 0.60 | 0.62 IoU |
+| Synthetic validation at a 0.60 probability threshold | 0.62 IoU |
 | Agreement with the real F3 teacher attribute before and after adaptation | 0.06 to 0.43 IoU |
 
-Intersection over Union (IoU) measures how much two masks overlap. The real F3 result measures agreement with the teacher attribute. Ground-truth fault labels were unavailable for that survey.
+Ground-truth fault labels were unavailable for the real F3 survey.
 
 ## Team and contribution
 
@@ -42,3 +56,4 @@ Berkan Güçlü worked alongside his teammates throughout the project, from init
 The [prototype notebook](notebooks/seismic_interpretation_prototype.ipynb) shows how the two prediction branches feed the shared viewer. Its facies branch uses an earlier DeconvNet implementation. The figure and results above come from the final thesis experiments, which used the pyramid-pooling facies model and the adapted fault model.
 
 `assets/` contains the thesis figure, `notebooks/` contains the code sample, and `requirements.txt` lists the notebook dependencies. The source seismic volumes and model weights are external to this portfolio. The README and figure can be viewed directly on GitHub.
+
